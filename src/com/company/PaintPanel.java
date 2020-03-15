@@ -2,16 +2,27 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class PaintPanel extends JPanel {
-    private static final int DEFAULT_WIDTH = 800;
-    private static final int DEFAULT_HEIGHT = 800;
-    private static final Color BACK_COLOR = Color.WHITE;
+public class PaintPanel  extends BasePaintPanel implements ActionListener {
 
-    private int x1, y1, x2, y2;
-    private Graphics g;
+    static JButton newColor = new JButton();
+
+    public PaintPanel() {
+        PaintPanel.MyMouseHandler handler = new PaintPanel.MyMouseHandler();
+        addMouseListener(handler);
+        addMouseMotionListener(handler);
+
+        newColor.addActionListener(this);
+    }
+
+    @Override
+    void changeColor() {
+
+    }
 
     public static void main(String[] args) {
 
@@ -21,19 +32,19 @@ public class PaintPanel extends JPanel {
         JPanel panel = new PaintPanel();
         frame.add(panel);
 
+
+        panel.add(newColor);
+
+
+
+
         frame.pack(); // устанавливает такой минимальный размер контейнера, который достаточен для отображения всех компонентов.
         frame.setVisible(true);
     }
 
-
-    PaintPanel() {
-        setBackground(BACK_COLOR);
-        setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
-
-        MyMouseHandler handler = new MyMouseHandler();
-
-        this.addMouseListener(handler);
-        this.addMouseMotionListener(handler);
+    @Override
+    public void actionPerformed(ActionEvent actionEvent) {
+        changeColor();
     }
 
     private class MyMouseHandler extends MouseAdapter {
@@ -56,5 +67,10 @@ public class PaintPanel extends JPanel {
             x2 = x1;
             y2 = y1;
         }
+
     }
+
+
+
+
 }
