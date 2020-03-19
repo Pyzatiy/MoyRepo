@@ -14,11 +14,16 @@ public abstract class BasePaintPanel extends JPanel {
     private static final int DEFAULT_HEIGHT = 800;
     private static final Color BACK_COLOR = Color.WHITE;
 
+
+
     BasePaintPanel() {
         setBackground(BACK_COLOR);
         setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 
     }
+
+
+
 
     abstract void changeColor();
 
